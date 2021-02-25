@@ -1,38 +1,22 @@
-import './App.css';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
+import "./App.css";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 
-import logo from './logo.png';
-
-import moment from 'moment';
-import { Calendar, momentLocalizer } from 'react-big-calendar';
+import logo from "./logo.png";
+import CalViewComponent from "./components/cal-view";
+import { Route, Switch } from "react-router-dom";
+import GraphComponent from "./components/graph-view";
 
 function App() {
-  const localizer = momentLocalizer(moment)
-
-  const myEventsList = [
-    {
-      title: "Test",
-      start: "2020-10-28",
-      end: "2020-10-29"
-    }
-  ];
-
   return (
     <div className="App">
       <header>
         <img src={logo} className="App-logo" alt="logo" />
         <h1>Gecko Portal</h1>
       </header>
-      <div>
-        <h2>Calendar</h2>
-        <Calendar
-          localizer={localizer}
-          events={myEventsList}
-          startAccessor="start"
-          endAccessor="end"
-          style={{ height: 500 }}
-        />
-      </div>
+      <Switch>
+        <Route path="/" exact component={CalViewComponent}></Route>
+        <Route path="/graph" component={GraphComponent}></Route>
+      </Switch>
     </div>
   );
 }
